@@ -9,7 +9,7 @@
 # indices of the anagrams of the pattern in the given string.
 # NOTE: Assume all distinct characters in pattern
 
-# return True if all anagrams of pattern found, False otherwise
+# return indices of all anagrams of pattern found
 def findStringAnagrams(str, pattern):
     windowStart, numberOfAnagrams = 0, 0
     anagramTable = {}

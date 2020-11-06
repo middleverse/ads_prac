@@ -37,9 +37,3 @@ def main():
   print("Length of the longest substring: " + str(non_repeat_substring("abccde")))
 
 main()
-
-        
-            
-
-
-

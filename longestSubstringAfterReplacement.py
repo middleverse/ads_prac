@@ -42,4 +42,3 @@ def main():
   print(length_of_longest_substring("abccde", 1))
 
 main()
-
