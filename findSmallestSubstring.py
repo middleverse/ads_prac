@@ -15,7 +15,7 @@ def find_substring(str, pattern):
     for windowEnd in range(len(str)):
         nextChar = str[windowEnd] # char at windowEnd
 
-        # 
+        # update countMap: all the pattern chars seen so far exist in countMap
         if nextChar in pattern:
             if nextChar not in countMap:
                 countMap[nextChar] = 0
