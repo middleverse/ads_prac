@@ -15,13 +15,22 @@ def dutch_flag_sort(arr):
     pointer = 0
     low, high = 0, len(arr) - 1
 
+    # when pointer reaches high index, we've sorted
     while pointer <= high:
+        # if current pointer value is 0
+        # switch pointer value with low value
+        # increment low index, pointer 
         if arr[pointer] == 0:
             arr[low], arr[pointer] = arr[pointer], arr[low]
             pointer += 1 # shift pointer to the right since when solidifying a low value
             low += 1
+        # if current pointer value is 1
+        # increment pointer
         elif arr[pointer] == 1:
             pointer += 1
+        # if current pointer value is 2
+        # switch pointer value with high value
+        # decrement high index
         else:
             arr[pointer], arr[high] = arr[high], arr[pointer]
             high -= 1
