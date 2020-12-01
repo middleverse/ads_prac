@@ -80,8 +80,8 @@ class MaxHeap:
         if len(self.heap) > right and self.heap[largest] < self.heap[right]:
             largest = right
         if largest != index:
-            self.__swap(index, largest)
-            self.__bubbleDown(largest)
+            self.__swap(index, largest) # NOTE: value swap, not index
+            self.__bubbleDown(largest) 
 
 m = MaxHeap([95, 3, 21])
 print(*m.heap)
