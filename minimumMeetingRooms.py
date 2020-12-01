@@ -1,5 +1,17 @@
+# ============================
+# Minimum Meeting Rooms (hard) 
+# ============================
+#
+# PROBLEM STATEMENT
+# Given a list of intervals representing the start and end time of ‘N’ meetings, 
+# find the minimum number of rooms required to hold all the meetings.
+#
+# EXAMPLE
+# Meetings: [[4,5], [2,3], [2,4], [3,5]]
+# Output: 2
+# Explanation: We will need one room for [2,3] and [3,5], 
+# and another room for [2,4] and [4,5].
 from heapq import *
-
 
 class Meeting:
     def __init__(self, start, end):
