@@ -21,6 +21,9 @@ class Meeting:
     def __lt__(self, other):
         # min heap based on meeting.end
         return self.end < other.end
+    
+    def __repr__(self):
+        return str([self.start, self.end]) 
 
 
 def min_meeting_rooms(meetings):
