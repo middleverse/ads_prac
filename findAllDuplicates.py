@@ -21,13 +21,15 @@ def find_all_duplicates(nums):
     i = 0
     while i < len(nums):
         correct_index = nums[i] - 1
-        if i == correct_index:
-            i += 1
-        elif nums[correct_index] == nums[i]:
-            duplicateNumbers.append(nums[i])
+        if nums[correct_index] == nums[i]:
             i += 1
         else:
             nums[i], nums[correct_index] = nums[correct_index], nums[i]
+
+    for j in range(len(nums)):
+        if nums[j] != j + 1:
+            duplicateNumbers.append(nums[j])
+    
     return duplicateNumbers
 
 def main():
