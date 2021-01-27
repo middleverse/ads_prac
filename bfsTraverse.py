@@ -12,27 +12,20 @@ def traverse(root):
     result = []
     # iterate through all levels
     # on each level add the nodes to result
-    current_level_nodes = [root]
-    while True:
-        result.append(addNodes(current_level_nodes, result)) # result now has current level nodes
-        new_current_level_nodes = []
-        for node in current_level_nodes:
-            if node.left is not None:
-                new_current_level_nodes.append(node.left)
-            if node.right is not None:
-                new_current_level_nodes.append(node.right)
-        if len(new_current_level_nodes) == 0:
-            break
-        current_level_nodes = new_current_level_nodes
-
+    queue = deque()
+    queue.append(root)
+    while queue:
+        size_of_level = len(queue)
+        current_level_nodes = []
+        for _ in range(size_of_level):
+            current_node = queue.popleft()
+            current_level_nodes.append(current_node.val)
+            if current_node.left:
+                queue.append(current_node.left)
+            if current_node.right:
+                queue.append(current_node.right)
+        result.append(current_level_nodes)
     return result
-
-
-def addNodes(nodes, result):
-    current_level_result = []
-    for i in range(len(nodes)):
-        current_level_result.append(nodes[i].val)
-    return current_level_result
 
 def main():
   root = TreeNode(12)
