@@ -6,27 +6,14 @@ class TreeNode:
 
 
 def has_path(root, sum):
-    current_sum = root.val
-    left, right = False, False
-    if root.left:
-        left = has_sum_path(root.left, current_sum, sum)
-    if root.right:
-        right = has_sum_path(root.right, current_sum, sum)
-    return left or right
+    if root is None:
+        return False
 
-def has_sum_path(node, curr_sum, wanted_sum):
-    curr_sum += node.val
-    left, right, leaf = False, False, True
-    if node.left:   
-        leaf = False
-        left = has_sum_path(node.left, curr_sum, wanted_sum)
-    if node.right:
-        leaf = False
-        right = has_sum_path(node.right, curr_sum, wanted_sum)
-    if leaf:
-        if curr_sum == wanted_sum:
-            return True
-    return left or right
+    if root.val == sum and root.left is None and root.right is None:
+        return True
+    
+    return has_path(root.left, sum - root.val) or has_path(root.right, sum - root.val)
+
 
 def main():
 
