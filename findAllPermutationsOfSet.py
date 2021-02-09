@@ -21,11 +21,12 @@ def find_permutations(nums):
                 # else, we're at a previous stage
                 else:
                     permutations.append(new_permutation)
+    print(len(result))
     return result
 
 
 def main():
-    print("Here are all the permutations: " + str(find_permutations([1, 3, 5])))
+    print("Here are all the permutations: " + str(find_permutations([1, 3, 5, 7])))
 
 
 main()
