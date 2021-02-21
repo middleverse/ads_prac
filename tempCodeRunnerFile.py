@@ -1,2 +1,2 @@
-    # if node is None:
-    #     return sum
+    # if ord(letters[start]) > ord(key):
+    #     return letters[start]
