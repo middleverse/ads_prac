@@ -1,48 +1,35 @@
 from heapq import *
+import math
 
 def find_smallest_range(lists):
-    merged_idxs, merged_nums, min_heap = [], [], []
-    n = len(lists)
+    min_heap = []
 
+
+    left, right = 0, math.inf
+    current_max_number = -math.inf
+    
     # push first element of all lists onto heap
-    for i in range(len(lists)):
-        l = lists[i]
-        heappush(min_heap, (l[0], i))
-        del l[0]
+    for l in lists:
+        heappush(min_heap, (l[0], 0, l))
+        current_max_number = max(l[0], current_max_number)
 
-    # when heap is empty, we know all elements of all lists have been merged
-    while min_heap:
-        el, lidx = heappop(min_heap)
-        merged_idxs.append(lidx)
-        merged_nums.append(el)
-        if lists[lidx]:
-            heappush(min_heap, (lists[lidx][0], lidx))
-            del lists[lidx][0]
+    # pop the heap on start
+    # the min element now becomes what pops out of the heap
+    # if the range between current max and current min (num) and smaller
+    #   than what's seen so far (right - left), update right and left
+    while len(min_heap) == len(lists):
+        num, idx, arr = heappop(min_heap)
+        if right - left > current_max_number - num:
+            left = num
+            right = current_max_number
+        if idx + 1 < len(arr):
+            idx += 1
+            heappush(min_heap, (arr[idx], idx, arr))
+            # update current max, right will always be last current_max_number
+            current_max_number = max(arr[idx], current_max_number)
 
-    # we now have ONE merged sorted list of all elements
-    num_freq = dict()
-
-    left, right = 0, -1
-    result = [merged_nums[0], merged_nums[-1] ]
-    while right < n - 1: # push n - 1 numbers on to the freq_char
-        right += 1
-        num_freq[merged_idxs[right]] = num_freq.get(merged_idxs[right], 0) + 1
-
-    # drive right all the way through the merged list of nums
-    while right < len(merged_idxs) - 1:
-        if len(num_freq) == n: # if we have one num from each list 
-            if merged_nums[right] - merged_nums[left] < result[1] - result[0]:
-                result = [merged_nums[left], merged_nums[right]]
-            # update variables & num_freq as we move left to the right by one index
-            num_freq[merged_idxs[left]] -= 1
-            if num_freq[merged_idxs[left]] <= 0:
-                del num_freq[merged_idxs[left]]
-            left += 1
-        else:
-            right += 1
-            num_freq[merged_idxs[right]] = num_freq.get(merged_idxs[right], 0) + 1
-
-    return result
+    return[left, right]    
+    
 
 
 def main():
